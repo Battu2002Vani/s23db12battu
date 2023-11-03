@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+  - let results = [{ name: "One Indian Girl", cost: 5.09, author: "Chetan Bhagat" },{ name: "A Bend in the River", cost: 10.09, author: "V.S.Naipaul" },{ name: "A River Sutra", cost: 9.99, author: "Gita Mehta" }]
+  div.container-fluid
+    div.row
+      each books,index in results
+       div.col-sm-2(onclick=`buy(${index})`) #{books.name}
+       div.col-sm-2(onclick=`buy(${index})`) #{books.cost}
+       div.col-sm-2(onclick=`buy(${index})`) #{books.author}
+       br
+       hr
+
+  script. 
+      function buy(index)
+      {
+        alert(`you purchased Item ${index+1}`)
+      }
