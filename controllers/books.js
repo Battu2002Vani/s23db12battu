@@ -1,8 +1,29 @@
 var books = require('../models/books');
 // List of all books
-exports.books_list = function(req, res) {
-res.send('NOT IMPLEMENTED: books list');
+exports.books_list = async function(req, res) {
+    try{
+    thebooks = await books.find();
+    res.send(thebooks);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
+
+    // VIEWS
+// Handle a show all view
+exports.books_view_all_Page = async function(req, res) {
+try{
+thebooks = await books.find();
+res.render('books', { title: 'books Search Results', results: thebooks });
+}
+catch(err){
+res.status(500);
+res.send(`{"error": ${err}}`);
+}
 };
+    
 // for a specific books.
 exports.books_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: books detail: ' + req.params.id);
