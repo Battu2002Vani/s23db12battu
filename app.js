@@ -45,27 +45,6 @@ instance3.save().then(doc => {
 }).catch(err => {
   console.error(err);
 })
-
-let instance4 = new books({
-  name:"WHAT IS IN ROOM 201", author:'CHETHAN BHAGATH',cost:17.0}
-);
-
-instance4.save().then(doc => {
-  console.log("fourth object saved");
-}).catch(err => {
-  console.error(err);
-})
-
-let instance5 = new books({
-  name:"THE DREAM OF SCIOPIO", author:'PETER WEISS',cost:21.0}
-);
-
-instance5.save().then(doc => {
-  console.log("fifth object saved");
-}).catch(err => {
-  console.error(err);
-})
-
 let reseed = true;
 if (reseed) {
 recreateDB();
