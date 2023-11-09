@@ -4,8 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('dotenv').config();
-const connectionString =
-process.env.MONGO_CON
+const connectionString =process.env.MONGO_CON
 mongoose = require('mongoose');
 mongoose.connect(connectionString);
 //Get the default connection
@@ -19,6 +18,7 @@ var books = require("./models/books");
 async function recreateDB(){
 // Delete everything
 await books.deleteMany();
+
 let instance1 = new
 books({name:"REVOLUTION 2023", author:'Chetan Bhagath',cost:15.4});
 instance1.save().then(doc=>{
@@ -27,9 +27,49 @@ console.log("First object saved")}
 console.error(err)
 });
 }
-let reseed = true;
-if (reseed) {recreateDB();}
+// Adding instance2
+let instance2 = new books({name:"THE LAST DICKENS", author:'MATHHEW PEARL',cost:19.6}
+  );
+instance2.save().then(doc => {
+  console.log("Second object saved");
+}).catch(err => {
+  console.error(err);
+})
 
+let instance3 = new books({
+  name:"THE POSE SHADOW", author:'MICHAEL PALIN',cost:21.0}
+);
+
+instance3.save().then(doc => {
+  console.log("Third object saved");
+}).catch(err => {
+  console.error(err);
+})
+
+let instance4 = new books({
+  name:"WHAT IS IN ROOM 201", author:'CHETHAN BHAGATH',cost:17.0}
+);
+
+instance4.save().then(doc => {
+  console.log("fourth object saved");
+}).catch(err => {
+  console.error(err);
+})
+
+let instance5 = new books({
+  name:"THE DREAM OF SCIOPIO", author:'PETER WEISS',cost:21.0}
+);
+
+instance5.save().then(doc => {
+  console.log("fifth object saved");
+}).catch(err => {
+  console.error(err);
+})
+
+let reseed = true;
+if (reseed) {
+recreateDB();
+}
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var BooksRouter = require('./routes/Books');
