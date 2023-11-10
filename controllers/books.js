@@ -25,9 +25,23 @@ res.send(`{"error": ${err}}`);
 };
     
 // for a specific books.
-exports.books_detail = function(req, res) {
-res.send('NOT IMPLEMENTED: books detail: ' + req.params.id);
+// exports.books_detail = function(req, res) {
+// res.send('NOT IMPLEMENTED: books detail: ' + req.params.id);
+// };
+
+
+// for a specific books.
+exports.books_detail = async function(req, res) {
+console.log("detail" + req.params.id)
+try {
+result = await books.findById( req.params.id)
+res.send(result)
+} catch (error) {
+res.status(500)
+res.send(`{"error": document for id ${req.params.id} not found`);
+}
 };
+
 // Handle books create on POST.
 exports.books_create_post = async function(req, res) {
     console.log(req.body)
@@ -35,7 +49,7 @@ exports.books_create_post = async function(req, res) {
     // We are looking for a body, since POST does not have query parameters.
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
-    // {"costume_type":"goat", "cost":12, "size":"large"}
+    // {"books_type":"goat", "cost":12, "size":"large"}
     document.name = req.body.name;
     document.author = req.body.author;
     document.cost = req.body.cost;
