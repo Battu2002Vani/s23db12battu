@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  - let booksid = toShow._id
+  - let name = toShow.name
+  - let author = toShow.author
+  - let cost = toShow.cost
+
+  div
+    div.row
+      div.booksAttr.mr-3 Books ID is:
+        div #{booksid}
+    div.row
+      div.booksAttr.mr-3 Books name is:
+        div #{name}
+    div.row
+      div.booksAttr.mr-3 Books author is:
+        div #{author}
+    div.row
+      div.booksAttr.mr-3 Books cost is:
+        div #{cost}
