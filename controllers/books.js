@@ -116,7 +116,7 @@ res.status(500)
 res.send(`{'error': '${err}'}`);
 }
 };
-// Handle building the view for creating a costume.
+// Handle building the view for creating a books.
 // No body, no in path parameter, no query.
 // Does not need to be async
 exports.books_create_Page = function(req, res) {
@@ -129,6 +129,21 @@ exports.books_create_Page = function(req, res) {
     res.send(`{'error': '${err}'}`);
     }
     };
+    // Handle building the view for updating a books.
+// query provides the id
+exports.books_update_Page = async function(req, res) {
+console.log("update view for item "+req.query.id)
+try{
+let result = await books.findById(req.query.id)
+res.render('booksupdate', { title: 'books Update', toShow: result });
+}
+catch(err){
+res.status(500)
+res.send(`{'error': '${err}'}`);
+}
+};
+
+
     
     
 
