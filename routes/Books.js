@@ -5,4 +5,6 @@ var router = express.Router();
 router.get('/', books_controlers.books_view_all_Page );
 /* GET detail books page */
 router.get('/detail', books_controlers.books_view_one_Page);
+/* GET create books page */
+router.get('/create', books_controlers.books_create_Page);
 module.exports = router;
