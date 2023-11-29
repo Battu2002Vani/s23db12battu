@@ -2,18 +2,31 @@ extends layout
 
 block content
   h1= title
-  - let result  = [{ name: "One Indian Girl", cost: 5.09, author: "Chetan Bhagat" },{ name: "A Bend in the River", cost: 10.09, author: "V.S.Naipaul" },{ name: "A River Sutra", cost: 9.99, author: "Gita Mehta" }]
+  - let results  = [{ name: "One Indian Girl", cost: 5.09, author: "Chetan Bhagat" },{ name: "A Bend in the River", cost: 10.09, author: "V.S.Naipaul" },{ name: "A River Sutra", cost: 9.99, author: "Gita Mehta" }]
   div.container-fluid
     div.row
-      each books,index in results
-       div.col-sm-2(onclick=`buy(${index})`) #{books.name}
-       div.col-sm-2(onclick=`buy(${index})`) #{books.cost}
-       div.col-sm-2(onclick=`buy(${index})`) #{books.author}
-       br
-       hr
+      each book, index in results
+        div.col-sm-4.mb-3
+          div.card(style="width: 18rem;")
+            img.card-img-top(src="book-cover.jpg", alt="Book Cover")
+            div.card-body
+              h5.card-title #{book.name}
+              p.card-text
+                strong Cost: #{book.cost.toFixed(2)}
+                br
+                strong Author: #{book.author}
+              a.btn.btn-primary(onclick=`buy(${index})`) Buy Now
+              hr
+              - let destination = `dispatch("/books/update?id=${book._id}")`;
 
-  script. 
-      function buy(index)
-      {
-        alert(`you purchased Item ${index+1}`)
-      }
+                div(class="row-sm-2", class="m-1")
+                | Book #{book.name} (#{book.author}) is #{book.cost}
+                button.btn(class="btn-primary ml-1", onclick=destination) Update
+              script.
+                function buy(index) {
+                  alert(`You purchased item ${index + 1}`);
+                }
+                function dispatch(path) {
+                window.location.href = path;
+                }
+
