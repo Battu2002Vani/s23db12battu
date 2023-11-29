@@ -22,11 +22,17 @@ block content
                 div(class="row-sm-2", class="m-1")
                 | Book #{book.name} (#{book.author}) is #{book.cost}
                 button.btn(class="btn-primary ml-1", onclick=destination) Update
-              script.
-                function buy(index) {
-                  alert(`You purchased item ${index + 1}`);
-                }
-                function dispatch(path) {
-                window.location.href = path;
-                }
+                a(class="btn btn-success" href="/books/create") Create
+                a(class="btn btn-danger" href=`/books/delete?id=${book._id}`) Delete
+                a(class="btn btn-dark" href=`/books/detail?id=${book._id}`) Details
+
+              //-script.
+               //- function buy(index) {
+                  //-alert(`You purchased item ${index + 1}`);
+                //-}
+
+    script. 
+        function dispatch(path) {
+            window.location.href = path
+        }
 
